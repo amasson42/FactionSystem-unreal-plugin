@@ -7,6 +7,8 @@
 #include "GenericTeamAgentInterface.h"
 #include "FactionSystemLibrary.generated.h"
 
+class UFactionData;
+
 
 /**
  *
@@ -29,5 +31,11 @@ public:
 
     UFUNCTION(BlueprintCallable, BlueprintPure, Category = "FactionSystemLibrary|Relation")
     static bool AreActorsHostile(AActor* Actor, AActor* OtherActor);
+
+    UFUNCTION(BlueprintCallable, BlueprintPure, Category = "FactionSystemLibrary|Relation")
+    static UFactionData* GetActorFactionData(AActor* Actor);
+
+    UFUNCTION(BlueprintCallable, Category = "FactionSystemLibrary|Relation")
+    static void SetAttitudeBetweenFactions(UFactionData* Faction, UFactionData* OtherFaction, ETeamAttitude::Type Attitude);
 
 };
