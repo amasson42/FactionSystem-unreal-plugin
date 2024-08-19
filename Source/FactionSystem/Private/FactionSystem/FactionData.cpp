@@ -6,6 +6,11 @@
 static uint8 _TeamAttitudes[256][256];
 static bool _TeamAttitudesInitialized = false;
 
+ETeamAttitude::Type FactionSystemAttitudeSolver(FGenericTeamId TeamA, FGenericTeamId TeamB)
+{
+    return static_cast<ETeamAttitude::Type>(_TeamAttitudes[TeamA.GetId()][TeamB.GetId()]);
+}
+
 static void _InitializeTeamAttitudes()
 {
     if (_TeamAttitudesInitialized)
@@ -19,11 +24,7 @@ static void _InitializeTeamAttitudes()
         }
     }
     _TeamAttitudesInitialized = true;
-}
-
-ETeamAttitude::Type FactionSystemAttitudeSolver(FGenericTeamId TeamId, FGenericTeamId OtherTeamId)
-{
-    return static_cast<ETeamAttitude::Type>(_TeamAttitudes[TeamId.GetId()][OtherTeamId.GetId()]);
+    FGenericTeamId::SetAttitudeSolver(FactionSystemAttitudeSolver);
 }
 
 UFactionData::UFactionData()
@@ -47,7 +48,6 @@ void UFactionData::PostLoad()
 
         _TeamAttitudes[TeamId.GetId()][Attitude.Key->TeamId.GetId()] = static_cast<uint8>(Attitude.Value);
     }
-    FGenericTeamId::SetAttitudeSolver(FactionSystemAttitudeSolver);
 }
 
 void UFactionData::SetAttitudeTowardFaction(UFactionData* OtherFaction, TEnumAsByte<ETeamAttitude::Type> Attitude)
