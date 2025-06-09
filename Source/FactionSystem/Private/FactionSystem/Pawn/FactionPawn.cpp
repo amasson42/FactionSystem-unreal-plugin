@@ -1,10 +1,10 @@
 // Copyright by amasson
 
 
-#include "FactionSystem/FactionCharacter.h"
+#include "FactionSystem/Pawn/FactionPawn.h"
 
 
-void AFactionCharacter::BeginPlay()
+void AFactionPawn::BeginPlay()
 {
 	Super::BeginPlay();
 	
@@ -17,7 +17,7 @@ void AFactionCharacter::BeginPlay()
 	}
 }
 
-FGenericTeamId AFactionCharacter::GetGenericTeamId() const
+FGenericTeamId AFactionPawn::GetGenericTeamId() const
 {
 	if (IGenericTeamAgentInterface* TeamAgentController = Cast<IGenericTeamAgentInterface>(GetController()))
 	{
