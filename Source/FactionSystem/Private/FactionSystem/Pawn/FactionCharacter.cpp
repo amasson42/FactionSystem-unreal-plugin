@@ -2,6 +2,8 @@
 
 
 #include "FactionSystem/Pawn/FactionCharacter.h"
+#include "FactionSystem/FactionData.h"
+#include "FactionSystem/FactionDataInterface.h"
 
 
 void AFactionCharacter::BeginPlay()
